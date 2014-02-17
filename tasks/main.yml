@@ -1,0 +1,20 @@
+---
+# Tasks to install Zend Server
+  - name: Ensure apt-get dependencies are installed
+    apt: pkg={{ item }}
+    with_items:
+     - python-apt
+     - python-pycurl
+    sudo: yes
+
+  - name: Download Zend repository PGP key
+    apt_key: id=F7D2C623 url=http://repos.zend.com/zend.key state=present
+    sudo: yes
+
+  - name: Add Zend package repository
+    apt_repository: repo='deb http://repos.zend.com/zend-server/{{ zendserver_version }}/deb server non-free' state=present
+    sudo: yes
+
+  - name: Install Zend Server
+    apt: update_cache=yes pkg=zend-server-php-{{ php_version }}
+    sudo: yes
