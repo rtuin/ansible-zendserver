@@ -18,3 +18,13 @@
   - name: Install Zend Server
     apt: update_cache=yes pkg=zend-server-php-{{ php_version }}
     sudo: yes
+
+  - name: Create entry in bash_profile
+    template: dest=/etc/profile.d/zend-server.sh src=zend-server.sh
+    sudo: yes
+    when: php_cli_in_path == true
+
+  - name: Make sure there is no entry in profile.d when selected so
+    file: state=absent path=/etc/profile.d/zend-server.sh
+    sudo: yes
+    when: php_cli_in_path == false

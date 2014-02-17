@@ -13,10 +13,11 @@ Role Variables
 
 In the current version, you can specify the following variables:
 
-| Name               | Default |                                       |
-|--------------------|---------|---------------------------------------|
-| zendserver_version | 6.3     | The version of Zend Server to install |
-| php_version        | 5.5     | The version of PHP to install         |
+| Name               | Default |                                                    |
+|--------------------|---------|----------------------------------------------------|
+| zendserver_version | 6.3     | The version of Zend Server to install              |
+| php_version        | 5.5     | The version of PHP to install                      |
+| php_cli_in_path    | true    | Add the Zend Server binary dir to the bash profile |
 
 
 Dependencies
