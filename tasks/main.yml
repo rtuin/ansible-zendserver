@@ -11,9 +11,15 @@
     apt_key: id=F7D2C623 url=http://repos.zend.com/zend.key state=present
     sudo: yes
 
-  - name: Add Zend package repository
+  - name: Add Zend Server package repository
     apt_repository: repo='deb http://repos.zend.com/zend-server/{{ zendserver_version }}/deb server non-free' state=present
     sudo: yes
+    when: zendserver_version < 7.0
+
+  - name: Add Zend Server eary-access package repository
+    apt_repository: repo='deb http://repos.zend.com/zend-server/early-access/deb server non-free' state=present
+    sudo: yes
+    when: zendserver_version == 7.0
 
   - name: Install Zend Server
     apt: update_cache=yes pkg=zend-server-php-{{ php_version }}
